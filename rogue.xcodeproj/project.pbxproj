@@ -17,6 +17,11 @@
 		05B38E5820D9D5F70036D249 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B38E5620D9D5F70036D249 /* LaunchScreen.storyboard */; };
 		05B38E6320D9D5F80036D249 /* rogueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E6220D9D5F80036D249 /* rogueTests.swift */; };
 		05B38E6E20D9D5F80036D249 /* rogueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E6D20D9D5F80036D249 /* rogueUITests.swift */; };
+		05B38E7C20D9DEA70036D249 /* tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E7B20D9DEA70036D249 /* tile.swift */; };
+		05B38E7E20D9DFBE0036D249 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E7D20D9DFBE0036D249 /* functions.swift */; };
+		05B38E8020D9E7DD0036D249 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E7F20D9E7DD0036D249 /* camera.swift */; };
+		05B38E8220DA01780036D249 /* board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E8120DA01780036D249 /* board.swift */; };
+		05B38E8420DA01D90036D249 /* room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E8320DA01D90036D249 /* room.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		05B38E6920D9D5F80036D249 /* rogueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rogueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B38E6D20D9D5F80036D249 /* rogueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rogueUITests.swift; sourceTree = "<group>"; };
 		05B38E6F20D9D5F80036D249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B38E7B20D9DEA70036D249 /* tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tile.swift; sourceTree = "<group>"; };
+		05B38E7D20D9DFBE0036D249 /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
+		05B38E7F20D9E7DD0036D249 /* camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camera.swift; sourceTree = "<group>"; };
+		05B38E8120DA01780036D249 /* board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = board.swift; sourceTree = "<group>"; };
+		05B38E8320DA01D90036D249 /* room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = room.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +122,11 @@
 				05B38E5420D9D5F70036D249 /* Assets.xcassets */,
 				05B38E5620D9D5F70036D249 /* LaunchScreen.storyboard */,
 				05B38E5920D9D5F70036D249 /* Info.plist */,
+				05B38E7B20D9DEA70036D249 /* tile.swift */,
+				05B38E7D20D9DFBE0036D249 /* functions.swift */,
+				05B38E7F20D9E7DD0036D249 /* camera.swift */,
+				05B38E8120DA01780036D249 /* board.swift */,
+				05B38E8320DA01D90036D249 /* room.swift */,
 			);
 			path = rogue;
 			sourceTree = "<group>";
@@ -267,9 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B38E8220DA01780036D249 /* board.swift in Sources */,
+				05B38E8020D9E7DD0036D249 /* camera.swift in Sources */,
+				05B38E8420DA01D90036D249 /* room.swift in Sources */,
 				05B38E4E20D9D5F60036D249 /* GameScene.swift in Sources */,
+				05B38E7E20D9DFBE0036D249 /* functions.swift in Sources */,
 				05B38E5020D9D5F60036D249 /* GameViewController.swift in Sources */,
 				05B38E4820D9D5F50036D249 /* AppDelegate.swift in Sources */,
+				05B38E7C20D9DEA70036D249 /* tile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +463,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UYERJT2YKM;
 				INFOPLIST_FILE = rogue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -460,7 +482,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UYERJT2YKM;
 				INFOPLIST_FILE = rogue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
