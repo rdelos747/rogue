@@ -12,6 +12,8 @@ import SpriteKit
 // ///////////////////////////////
 // V A R S
 // /////////////////////////////////////////////////////////////
+let X_MAX = 30
+let Y_MAX = 30
 // SIZES
 let TILE_WIDTH = 20
 let TILE_HEIGHT = 35
@@ -44,7 +46,7 @@ func hex(_ hex:String) -> UIColor {
     )
 }
 
-func chance(_ n:Int) -> Int {
+func chance() -> Int {
     return Int(arc4random_uniform(100))
 }
 

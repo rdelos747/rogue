@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
     var cam:Camera!
+    var level:Level!
+    var board:Board!
     
     //private var label : SKLabelNode?
     //private var spinnyNode : SKShapeNode?
@@ -18,9 +20,9 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         self.cam = Camera(scene:self)
         self.camera = self.cam.cam
-        //self.addChild(self.cam.cam)
-        var t = Tile()
-        self.addChild(t)
+        self.board = Board()
+        self.level = Level(self)
+        self.level.initTiles(/* pass board here */)
         
 //        // Get label node from scene and store it for use later
 //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
