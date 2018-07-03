@@ -27,11 +27,17 @@ class Level {
         }
     }
     
-    func initTiles() {
+    func initTiles(_ newTiles:[[Int]]) {
         for j in 0..<Y_MAX {
             for i in 0..<X_MAX {
-                if chance() < 10 {
+                if newTiles[j][i] == 0 {
+                    self.tiles[j][i].updateType("none")
+                } else if newTiles[j][i] == 1 {
+                    self.tiles[j][i].updateType("floor")
+                } else if newTiles[j][i] == 2 {
                     self.tiles[j][i].updateType("wall")
+                } else if newTiles[j][i] == 3 {
+                    self.tiles[j][i].updateType("door")
                 }
             }
         }
