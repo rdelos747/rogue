@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		053E7BDE20EB213800874B82 /* level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E7BDD20EB213800874B82 /* level.swift */; };
 		053E7BE020EB223800874B82 /* types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E7BDF20EB223800874B82 /* types.swift */; };
+		053E7BE220F5A35600874B82 /* cell_auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053E7BE120F5A35600874B82 /* cell_auto.swift */; };
 		05B38E4820D9D5F50036D249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B38E4720D9D5F50036D249 /* AppDelegate.swift */; };
 		05B38E4A20D9D5F50036D249 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 05B38E4920D9D5F50036D249 /* GameScene.sks */; };
 		05B38E4C20D9D5F60036D249 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 05B38E4B20D9D5F60036D249 /* Actions.sks */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		053E7BDD20EB213800874B82 /* level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = level.swift; sourceTree = "<group>"; };
 		053E7BDF20EB223800874B82 /* types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = types.swift; sourceTree = "<group>"; };
+		053E7BE120F5A35600874B82 /* cell_auto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cell_auto.swift; sourceTree = "<group>"; };
 		05B38E4420D9D5F50036D249 /* rogue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rogue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B38E4720D9D5F50036D249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05B38E4920D9D5F50036D249 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				05B38E8120DA01780036D249 /* board.swift */,
 				05B38E8320DA01D90036D249 /* room.swift */,
 				053E7BDD20EB213800874B82 /* level.swift */,
+				053E7BE120F5A35600874B82 /* cell_auto.swift */,
 			);
 			path = rogue;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				05B38E8420DA01D90036D249 /* room.swift in Sources */,
 				05B38E4E20D9D5F60036D249 /* GameScene.swift in Sources */,
 				05B38E7E20D9DFBE0036D249 /* functions.swift in Sources */,
+				053E7BE220F5A35600874B82 /* cell_auto.swift in Sources */,
 				05B38E5020D9D5F60036D249 /* GameViewController.swift in Sources */,
 				053E7BE020EB223800874B82 /* types.swift in Sources */,
 				05B38E4820D9D5F50036D249 /* AppDelegate.swift in Sources */,
