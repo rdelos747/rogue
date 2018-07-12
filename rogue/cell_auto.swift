@@ -37,6 +37,7 @@ func cellAuto(_ c:Int, _ h:Int, _ w:Int, _ d:Int, _ b:Int, _ cy:Int) -> [[Int]] 
         a = aa
     }
     
+    //print(a)
     return a
 }
 
@@ -51,6 +52,25 @@ func getSurrounding(_ j:Int, _ i:Int, _ h:Int, _ w:Int, _ a:[[Int]]) -> Int {
         for ii in iMin...iMax {
             if a[jj + j][ii + i] == 1 && !(jj == 0 && ii == 0) {
                 n += 1
+            }
+        }
+    }
+    return n
+}
+
+func getSurroundingStrict(_ j:Int, _ i:Int, _ h:Int, _ w:Int, _ a:[[Int]]) -> Int {
+    let jMin = (j > 0) ? -1 : 0
+    let jMax = (j < h - 1) ? 1 : 0
+    let iMin = (i > 0) ? -1 : 0
+    let iMax = (i < w - 1) ? 1 : 0
+    
+    var n = 0
+    for jj in jMin...jMax {
+        for ii in iMin...iMax {
+            if !(jj == -1 && ii == -1) && !(jj == 1 && ii == -1) && !(jj == -1 && ii == 1) && !(jj == 1 && ii == 1) {
+                if a[jj + j][ii + i] == 1 && !(jj == 0 && ii == 0) {
+                    n += 1
+                }
             }
         }
     }

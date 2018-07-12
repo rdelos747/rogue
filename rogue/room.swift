@@ -13,6 +13,8 @@ let SQUARE_MAX_SIZE = 10
 
 let BLOB_MIN_SIZE = 5
 let BLOB_MAX_SIZE = 15
+let LARGE_BLOB_MIN_SIZE = 15
+let LARGE_BLOB_MAX_SIZE = 28
 
 let CELL_CHANCE = 30
 let NUM_CELL_AUTOS = 3
@@ -30,8 +32,11 @@ class Room {
     var found:[(Int, Int)] = [(Int, Int)]()
     var current:[(Int, Int)] = [(Int, Int)]()
     var best:[(Int, Int)] = [(Int, Int)]()
+    var doors:[(Int, Int)] = [(Int, Int)]()
     var w:Int = 0
     var h:Int = 0
+    var originX = 0
+    var originY = 0
     
     init(_ roomType:String) {
         if roomType == "square" {
@@ -42,10 +47,12 @@ class Room {
             self.generateLargeBlob()
         }
         
-        if chance() > CORRIDOR_CHANCE {
+        if chance() > CORRIDOR_CHANCE && roomType != "large blob" {
             self.addCorridor()
         }
+        
         self.addWalls()
+        self.addDoors()
     }
     
     func printTiles() {
@@ -82,7 +89,13 @@ class Room {
     }
     
     func generateLargeBlob() {
-        
+        var createBetterBlob = true
+        while createBetterBlob {
+            self.w = rand(LARGE_BLOB_MIN_SIZE, LARGE_BLOB_MAX_SIZE)
+            self.h = rand(LARGE_BLOB_MIN_SIZE, LARGE_BLOB_MAX_SIZE)
+            self.tiles = cellAuto(CELL_CHANCE, self.h, self.w, DEATH, BIRTH, NUM_CELL_AUTOS)
+            createBetterBlob = (self.findLargestBlob() < MIN_BEST_LEN)
+        }
     }
     
     func findLargestBlob() -> Int {
@@ -96,6 +109,10 @@ class Room {
                     self.current = [(Int, Int)]()
                 }
             }
+        }
+        
+        if self.best.count == 0 {
+            return 0
         }
         
         var newMaxH = 0
@@ -248,6 +265,52 @@ class Room {
                 if self.tiles[j][i] == 0 && getSurrounding(j, i, self.h, self.w, self.tiles) > 0 {
                     self.tiles[j][i] = 2
                 }
+            }
+        }
+    }
+    
+    func addDoors() {
+        var topDoor = 20
+        while topDoor > 0 {
+            topDoor -= 1
+            let randX = rand(0, self.w - 1)
+            let randY = 0
+            if self.tiles[randY][randX] == 2 && self.tiles[randY + 1][randX] == 1 {
+                self.doors.append((randY, randX))
+                topDoor = 0
+            }
+        }
+        
+        var botDoor = 20
+        while botDoor > 0 {
+            botDoor -= 1
+            let randX = rand(0, self.w - 1)
+            let randY = self.h - 1
+            if self.tiles[randY][randX] == 2 && self.tiles[randY - 1][randX] == 1 {
+                self.doors.append((randY, randX))
+                botDoor = 0
+            }
+        }
+        
+        var rightDoor = 20
+        while rightDoor > 0 {
+            rightDoor -= 1
+            let randX = self.w - 1
+            let randY = rand(0, self.h - 1)
+            if self.tiles[randY][randX] == 2 && self.tiles[randY][randX - 1] == 1 {
+                self.doors.append((randY, randX))
+                rightDoor = 0
+            }
+        }
+        
+        var leftDoor = 20
+        while leftDoor > 0 {
+            leftDoor -= 1
+            let randX = 0
+            let randY = rand(0, self.h - 1)
+            if self.tiles[randY][randX] == 2 && self.tiles[randY][randX + 1] == 1 {
+                self.doors.append((randY, randX))
+                leftDoor = 0
             }
         }
     }
