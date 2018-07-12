@@ -21,6 +21,10 @@ let MIN_BEST_LEN = 25
 let BIRTH = 3
 let DEATH = 1
 
+let CORRIDOR_CHANCE = 30
+let CORRIDOR_MIN = 4
+let CORRIDOR_MAX = 10
+
 class Room {
     var tiles:[[Int]] = [[Int]]()
     var found:[(Int, Int)] = [(Int, Int)]()
@@ -38,6 +42,9 @@ class Room {
             self.generateLargeBlob()
         }
         
+        if chance() > CORRIDOR_CHANCE {
+            self.addCorridor()
+        }
         self.addWalls()
     }
     
@@ -70,9 +77,7 @@ class Room {
             self.w = rand(BLOB_MIN_SIZE, BLOB_MAX_SIZE)
             self.h = rand(BLOB_MIN_SIZE, BLOB_MAX_SIZE)
             self.tiles = cellAuto(CELL_CHANCE, self.h, self.w, DEATH, BIRTH, NUM_CELL_AUTOS)
-            self.printTiles()
             createBetterBlob = (self.findLargestBlob() < MIN_BEST_LEN)
-            self.printTiles()
         }
     }
     
@@ -144,27 +149,106 @@ class Room {
         }
     }
     
-    func addWalls() {
-        // surround the room with 0s first
-        let newWidth = self.w + 2
-        let newHeight = self.h + 2
-        var a = Array(repeating: Array(repeating: 0, count: newWidth), count: newHeight)
-        for j in 0..<self.h {
-            for i in 0..<self.w {
-                a[j + 1][i + 1] = self.tiles[j][i]
+    func addCorridor() {
+        let randSize = rand(CORRIDOR_MIN, CORRIDOR_MAX)
+        let cDir = rand(0, 3)
+        
+        var a:[[Int]] = [[Int]]()
+        if cDir == 0 { //up
+            a = Array(repeating: Array(repeating: 0, count: self.w), count: self.h + randSize)
+            for j in 0..<self.h {
+                for i in 0..<self.w {
+                    a[j + randSize][i] = self.tiles[j][i]
+                }
+            }
+            self.h = self.h + randSize
+            var searching = true
+            var randX = 0
+            while searching {
+                randX = rand(1, self.w - 2)
+                if a[randSize + 2][randX] == 1 {
+                    searching = false
+                }
+            }
+            a[randSize][randX] = 3
+            for j in 1..<randSize {
+                a[j][randX] = 1
             }
         }
+        else if cDir == 1 { //down
+            a = Array(repeating: Array(repeating: 0, count: self.w), count: self.h + randSize)
+            for j in 0..<self.h {
+                for i in 0..<self.w {
+                    a[j][i] = self.tiles[j][i]
+                }
+            }
+            var searching = true
+            var randX = 0
+            while searching {
+                randX = rand(1, self.w - 2)
+                if a[self.h - 2][randX] == 1 {
+                    searching = false
+                }
+            }
+            a[self.h - 1][randX] = 3
+            for j in self.h..<(self.h + randSize) - 1 {
+                a[j][randX] = 1
+            }
+            self.h = self.h + randSize
+        }
+        else if cDir == 2 { //left
+            a = Array(repeating: Array(repeating: 0, count: self.w + randSize), count: self.h)
+            for j in 0..<self.h {
+                for i in 0..<self.w {
+                    a[j][i + randSize] = self.tiles[j][i]
+                }
+            }
+            self.w = self.w + randSize
+            var searching = true
+            var randY = 0
+            while searching {
+                randY = rand(1, self.h - 2)
+                if a[randY][randSize + 2] == 1 {
+                    searching = false
+                }
+            }
+            a[randY][randSize] = 3
+            for i in 1..<randSize {
+                a[randY][i] = 1
+            }
+        }
+        else if cDir == 3 { //right
+            a = Array(repeating: Array(repeating: 0, count: self.w + randSize), count: self.h)
+            for j in 0..<self.h {
+                for i in 0..<self.w {
+                    a[j][i] = self.tiles[j][i]
+                }
+            }
+            var searching = true
+            var randY = 0
+            while searching {
+                randY = rand(1, self.h - 2)
+                if a[randY][self.w - 2] == 1 {
+                    searching = false
+                }
+            }
+            a[randY][self.w - 1] = 3
+            for i in self.w..<(self.w + randSize) - 1 {
+                a[randY][i] = 1
+            }
+            self.w = self.w + randSize
+        }
         
-        var a2 = a
-        for j in 0..<newHeight {
-            for i in 0..<newWidth {
-                if a[j][i] == 0 && getSurrounding(j, i, newHeight, newWidth, a) > 0 {
-                    a2[j][i] = 2
+        self.tiles = a
+    }
+    
+    func addWalls() {
+        for j in 0..<self.h {
+            for i in 0..<self.w {
+                if self.tiles[j][i] == 0 && getSurrounding(j, i, self.h, self.w, self.tiles) > 0 {
+                    self.tiles[j][i] = 2
                 }
             }
         }
-        self.w = newWidth
-        self.h = newHeight
-        self.tiles = a2
     }
 }
