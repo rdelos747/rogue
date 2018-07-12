@@ -21,8 +21,8 @@ class GameScene: SKScene {
         self.cam = Camera(scene:self)
         self.camera = self.cam.cam
         self.board = Board()
-        self.level = Level(self)
-        self.level.initTiles(board.tiles)
+        self.level = Level(self, board.tiles)
+        //self.level.initTiles(board.tiles)
         
 //        // Get label node from scene and store it for use later
 //        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
