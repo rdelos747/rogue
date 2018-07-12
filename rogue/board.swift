@@ -22,6 +22,7 @@ class Board {
         
         var rounds = NUM_CYCLES
         while rounds > 0 {
+            print("ROUND", rounds)
             if rounds == NUM_CYCLES {
                 let c = chance()
                 if c <= LARGE_BLOB_CHANCE {
@@ -77,7 +78,7 @@ class Board {
     func checkAvailable(_ r:Room) -> Bool {
         var numTries = 100
         var foundSpace = false
-        while numTries > 0 {
+        outerLoop: while numTries > 0 {
             numTries -= 1
             r.originX = rand(0, X_MAX - r.w)
             r.originY = rand(0, Y_MAX - r.h)
@@ -87,6 +88,7 @@ class Board {
                 for i in 0..<r.w {
                     if self.tiles[j + r.originY][i + r.originX] == 1 {
                         goodSpace = false
+                        continue outerLoop
                     }
                 }
             }
@@ -100,6 +102,10 @@ class Board {
                 }
             }
             
+            if goodDoor == false {
+                continue outerLoop
+            }
+            
             if goodSpace && goodDoor {
                 print("======= here", 100 - numTries)
                 numTries = 0
@@ -110,5 +116,9 @@ class Board {
             }
         }
         return foundSpace
+        
+        /*
+         Sometimes this will complete, but other time is wont, so start printing functions in ROOM
+    */
     }
 }

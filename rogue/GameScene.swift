@@ -20,8 +20,11 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         self.cam = Camera(scene:self)
         self.camera = self.cam.cam
+        print("starting board")
         self.board = Board()
+        print("level board")
         self.level = Level(self, board.tiles)
+        print("level and board finished")
         //self.level.initTiles(board.tiles)
         
 //        // Get label node from scene and store it for use later
