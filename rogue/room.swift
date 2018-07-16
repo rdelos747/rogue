@@ -11,7 +11,7 @@ import Foundation
 let SQUARE_MIN_SIZE = 4
 let SQUARE_MAX_SIZE = 10
 
-let BLOB_MIN_SIZE = 5
+let BLOB_MIN_SIZE = 6
 let BLOB_MAX_SIZE = 15
 let LARGE_BLOB_MIN_SIZE = 15
 let LARGE_BLOB_MAX_SIZE = 28

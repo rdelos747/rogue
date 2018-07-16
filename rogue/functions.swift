@@ -12,12 +12,13 @@ import SpriteKit
 // ///////////////////////////////
 // V A R S
 // /////////////////////////////////////////////////////////////
-let X_MAX = 30
-let Y_MAX = 30
+let SHOW_LOGS =                 true
+let X_MAX =                     30
+let Y_MAX =                     30
 // SIZES
-let TILE_WIDTH = 20
-let TILE_HEIGHT = 35
-let TILE_LABEL_SIZE = 20
+let TILE_WIDTH =                20
+let TILE_HEIGHT =               35
+let TILE_LABEL_SIZE =           20
 
 // COLORS
 
@@ -52,4 +53,13 @@ func chance() -> Int {
 
 func rand(_ min:Int, _ max:Int) -> Int {
     return Int(arc4random_uniform(UInt32(max) - UInt32(min)) + UInt32(min))
+}
+
+func log(_ args:AnyObject...) {
+    if SHOW_LOGS {
+        for arg:AnyObject in args {
+            print(arg, terminator: " ")
+        }
+        print("", terminator:"\n")
+    }
 }
